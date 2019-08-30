@@ -1,0 +1,67 @@
+Combined
+
+H:\SSL\MUB Certs
+
+runmqckm -cert -list -db clientkey.kdb -pw Baseba11$Diamond -type cms
+runmqckm -cert -list -db clientkey.kdb -pw 2good2b4gotten -type cms
+
+gsk8capicmd -cert -list -db key.kdb -pw PaTaGonia2010 
+
+I:\SOA\ITS\MQ&DB Mgmt\MQ\ProdSupport\SSL\Sophis
+
+
+gsk8capicmd -cert -add -db key.kdb -label "MUB_Root_CA - Nov 2036" -file MUB_Root_CA.cer -format ascii -trust enable -pw xxxx
+gsk8capicmd -cert -add -db key.kdb -label "MUB_Issuing_CA1 - Nov 2026" -file MUB_Issuing_CA1.cer -format ascii -trust enable -pw xxxx
+
+gsk8capicmd -cert -add -db key.kdb -stashed -label "  "  -file
+
+gsk8capicmd -cert -details -db key.kdb -pw PaTaGonia2010 -label ibmwebspheremqqm.mic104_prepro_2031
+
+runmqakm -cert -add -db key.kdb -stashed -label "MUB Root CA" -file MUB_Root_CA.cer
+runmqakm -cert -add -db key.kdb -stashed -label "MUB Issuing CA1" -file MUB_Issuing_CA1.cer
+
+runmqakm -cert -list -db key.kdb -stashed
+
+runmqakm -cert -receive -db key.kdb -stashed -file gppbgu06.cer
+
+
+gsk8capicmd -cert -delete -db key.kdb -label ibmwebspheremqextgws01 -pw PaTaGonia2010
+
+
+Windows:
+C:\...> cd C:\Program Files\IBM\WebSphere MQ\Qmgrs\myqmgr\ssl
+C:\...> runmqckm -keydb -create -db myqmgr.kdb -type cms –stash –pw password -type cms–stash
+runmqckm -keydb -create -db myqmgr.kdb -type cms –stash –pw password -type cms–stash
+
+UNIX:
+
+UNIX:
+$cd /var/mqm/qmgrs/myqmgr/ssl
+$gsk7capicmd -keydb -create -db myqmgr.kdb -pw password
+-type cms -stash 
+
+gsk7capicmd -keydb -create -db key.kdb -pw PaTaGonia2010 -type cms -stash 
+runmqckm -keydb -create -db key.kdb -pw PaTaGonia2010 -type cms –stash
+
+Windows:
+C:\...> runmqckm -certreq -create -db myqmgr.kdb -pw password 
+–label label  -dn "distinguished_name" -size key_size 
+-file request_file 
+
+C:\...> runmqckm -cert -receive -db key_file -pw password -type cms
+ -file signed_file
+
+
+
+UNIX
+$gsk7capicmd -certreq -create -db myqmgr.kdb -pw password -label label 
+-dn "distinguished_name" -size key_size -file request_file 
+
+$gsk7capicmd -cert -receive -db key_file -pw password -type cms 
+-file signed_file
+
+
+ou can always turn on SSL debug handshake in the application jvm by including the javax.net.ssl parm
+sorry it is javax.net.debug
+you can specify javax.net.debug=ssl,handshake
+This will dump everything going on when the SSL handshake is taking place

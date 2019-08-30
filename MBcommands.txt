@@ -1,0 +1,55 @@
+you can get the IP address by logging on broker service id and execute below commands:
+    db2 list db directory
+    db2 list node directory
+
+mqsicvp
+mqsireload Broker -e EG
+mqsilist Broker -e EGview 
+mqsiservice -v 
+
+asmqsi2u@sfamhbkuat2f1:/opt/IBM/mqsi/8.0.0.5/ODBC]:-> echo $ODBCINI
+/HA/F1/users/home/asmqsi2u/odbc/.odbc.ini
+[asmqsi2u@sfamhbkuat2f1:/opt/IBM/mqsi/8.0.0.5/ODBC]:->
+
+mqsistart broker
+mqsicreateexecutiongroup BROKER -e
+
+WMB v6 Start/Stop EG's and/or MsgFlows
+- Start/Stop EG's (under CfgMgr Service Id only)
+mqsistartmsgflow -q <MB-CfMgr-Name> -b <MB-Name> -e <EG-Name> -m <MsgFlow-Name>
+mqsistopmsgflow  -q <MB-CfMgr-Name> -b <MB-Name> -e <EG-Name> -m <MsgFlow-Name>
+run under config manager 
+[mqcmuat1@sfmqsidevl:/home/mqcmuat1/deploy]:-> mqsistartmsgflow -q MQCMUAT1 -b MQSIUAT1 -e EGTW
+
+mqsilist EPPBKU03 -e EPP_RT2 | grep PhysicalTransmissionFlow.PTF_TRAM
+
+mqsistartmsgflow EPPBKU03 -e EPP_RT2 -m grep PhysicalTransmissionFlow.PTF_TRAM
+mqsistopmsgflow EPPBKU03 -e EPP_RT2 | grep PhysicalTransmissionFlow.PTF_TRAM
+mqsistartmsgflow MQSIUAT1 -e EGTW -q MQCMUAT1
+
+mqsistartmsgflow (-n cfgParameterFileName | ([-i ipAddress] [-p port] [-q qMgr])) -b brokerName [-e executionGroupName [-m flowName]] [-w time                           outValue] [-v traceFileName]
+mqsistopmsgflow -q MQCMUAT1 -b <Broker_Name> -e <EG_NAME> -w 200
+
+/var/adm/messages
+
+bipconfigmgr MQCMUAT1
+mqsistartmsgflow -q MQCMUAT1 -b MQSIUAT1 -e EGTW
+
+mqsideploy IBNODE -e default -a my.bar
+mqsideploy AMHBKS22 -e IVT -a 
+
+--- MQSI Version (using service id)
+sudo -l
+sudo su - mqsi...
+mqsiservice -v;mqsilist
+-[mqsisit1@njmqsisitf1:/HA/users/home/mqsisit1]:-> mqsiservice -v
+
+[mqsisit1@njmqsisitf1:/HA/users/home/mqsisit1]:-> mqsilist
+BIP1295I: Broker 'EPPBKS03' is a multi-instance broker running in active mode on multi-instance queue manager 'EPPBKS03'.
+BIP8071I: Successful command completion.
+[mqsisit1@njmqsisitf1:/HA/users/home/mqsisit1]:->
+
+mqm@njmqgwprdf1:/apps/home/mqm]:-> netstat -an | grep 206.54.156.39
+tcp4       0      0  10.97.133.76.51431     206.54.156.39.61229    ESTABLISHED
+tcp4       0      0  10.97.133.76.51431     206.54.156.39.61475    ESTABLISHED
+

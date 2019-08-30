@@ -1,0 +1,80 @@
+[mqm@njamhbkprdf1:/var/mqm/errors]:-> date;ls -altr *.FDC|wc -l
+Mon Jul 24 09:04:50 EDT 2017
+   25090
+[mqm@njamhbkprdf1:/var/mqm/errors]:-> date;du -sg /var/mqm/errors
+Mon Jul 24 09:05:05 EDT 2017
+3.27    /var/mqm/errors
+
+[mqm@njamhbkprdf1:/var/mqm/errors]:-> date;df -g /var/mqm
+Mon Jul 24 09:05:41 EDT 2017
+Filesystem    GB blocks      Free %Used    Iused %Iused Mounted on
+/dev/varmqm_lv      4.00      0.63   85%    26132    15% /var/mqm
+________________________________________
+FDC files get generated ~2 per min, size ~135Kb each
+-rw-r-----    1 mqm      mqm          138474 Jul 24 09:00 AMQ17301526.1.FDC
+-rw-r-----    1 mqm      mqm          138564 Jul 24 09:00 AMQ27787370.0.FDC
+
+rm -R lampp
+ # IN UNIX ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+ sed 's/.$//'               # assumes that all lines end with CR/LF
+ sed 's/^M$//'              # in bash/tcsh, press Ctrl-V then Ctrl-M
+ sed 's/\x0D$//'            # works on ssed, gsed 3.02.80 or higher
+
+ls -ltr F*| wc -l
+scp source_file_path destination_file_path
+scp ~/my_local_file.txt user@remote_host.com:/some/remote/directory
+
+df -g | grep opt/IBM/ITM
+tail -500f AMQERR01.LOG
+
+[asmqsi2s@sfamhbksitf2:/var/mqsi]:-> df /var/mqsi
+Filesystem    512-blocks      Free %Used    Iused %Iused Mounted on
+/dev/varmqsi_lv    4194304       0  100%     1140    54% /var/mqsi
+
+tar -cf /tmp/blockip.tar BlockIP2_V293 (compress BlockIP2_V293 to blockip.tar)
+tar -xvf blockip.tar                 (unpack blockip.tar)
+after copy chmod 755, sudo su - mqm, then move 
+
+echo %path%
+[13] nj7lrmappsitf1 mqm:mqm /apps/home/mqm   2015-11-03 14:45:18
+$ hostname;df -g|egrep 'File|usr|tmp|mqm'
+nj7lrmappsitf1
+Filesystem    GB blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd2           6.00      2.24   63%    68623    12% /usr
+/dev/hd3           5.00      1.44   72%     4617     2% /tmp
+
+--- AIX MQ\MB\WTX Inventory Commands
+alias S="echo $(printf "%80s\n"|tr ' ' '-')";\
+echo "\nCores:";S;lsconf|grep Proces;S;lparstat -i|grep CPU;S;\
+echo "\nMQ Version:";S;dspmqver;S;\
+echo "\nQMgrs:";S;dspmq;S;\
+echo "\nMQ/MB Key Proceses:";S;\
+ps -ef|egrep '[m]qlsr|[b]ipb|[b]ipc'|sort -k 10.12;\
+echo "\nList MQ\MB Installed Packages";S;lslpp -l mq*;\
+# Shorter alternative of the above:
+# echo "\nList MQ\MB Installed Packages";S;lslpp -L|grep mq
+echo "\nList WTX version (if exists)";S;\
+[[ ! -d /opt/ibm/wsdtx ]]||ls -al /opt/ibm/wsdtx|grep mqm
+
+--- MQSI Version (using service id)
+sudo -l
+sudo su - mqsi...
+mqsiservice -v;mqsilist
+-[mqsisit1@njmqsisitf1:/HA/users/home/mqsisit1]:-> mqsiservice -v
+
+[mqsisit1@njmqsisitf1:/HA/users/home/mqsisit1]:-> mqsilist
+BIP1295I: Broker 'EPPBKS03' is a multi-instance broker running in active mode on multi-instance queue manager 'EPPBKS03'.
+BIP8071I: Successful command completion.
+[mqsisit1@njmqsisitf1:/HA/users/home/mqsisit1]:->
+
+mqm@njmqgwprdf1:/apps/home/mqm]:-> netstat -an | grep 206.54.156.39
+tcp4       0      0  10.97.133.76.51431     206.54.156.39.61229    ESTABLISHED
+tcp4       0      0  10.97.133.76.51431     206.54.156.39.61475    ESTABLISHED
+
+ id -u username
+Replace username with the appropriate user's username. To find a user's GID, at the Unix prompt, enter:
+ id -g username
+If you wish to find out all the groups a user belongs to, instead enter:
+ id -G username
+If you wish to see the UID and all groups associated with a user, enter id without any options, as follows:
+ id username

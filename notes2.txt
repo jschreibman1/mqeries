@@ -1,0 +1,75 @@
+x7NzcJtMk
+
+
+EXTGWS01
+
+NJMQGWDEVL
+
+/HA/F1/mqm/qmgrs/EXTGWS01
+
+gsk8capicmd -certreq -create -db key.kdb -label ibmwebspheremqextgws01 -dn "cn=EXTGWS01.NJMQGWDEVL.us.mufg.jp,o=MUFG Bank\, Ltd.,ou=Q84,l=Jersey City,st=New Jersey,c=US" -size 2048 -file EXTGWS01.req -pw PaTaGonia2010
+gsk8capicmd -cert -receive -file EXTGWS01.cer -db key.kdb -pw PaTaGonia2010 -format ascii 
+runmqckm -cert -list -db key.kdb -pw PaTaGonia2010 -type cms
+
+Clustered queue managers
+
+AMHCLS01     sfamhbksitf2(1416)
+
+DISPLAY CLUSQMGR(*)   AMHCLS01
+   
+   AMHBKS01    h                  
+   AMHBKS12                    
+   AMHBKS22    h                   
+   AMHGWS01    h                    
+   AMHRPS01    h                    
+   CLIGWS02                    
+   EXTGWS01    h                  
+   INTGWS02    h             
+
+Connected queue managers
+
+INTGWS01
+EXTGWU02
+AMHGWS11
+AMHBKS11
+QMNPXUAT  (CGI for T360)  142.101.124.9(1423)
+QMNPXSIT  		  142.101.124.6(1414)
+QMNPXBMK		  142.101.124.12(1414)  -  Stopped
+
+FISATS.BTMUS01.CL
+IRV5300.EXTGWS01.CL
+
+x7NzcJtMk
+
+gsk8capicmd -cert -list -db key.kdb -pw PaTaGonia2010 -type cms
+gsk8capicmd -cert -details -db key.kdb -pw PaTaGonia2010 -label ibmwebspheremqextgws02
+
+gsk8capicmd -cert -add -db key.kdb -pw PaTaGonia2010 -label EXTGWS02-DigiCertGlobalRootCA -file EXTGWS02-DigiCertGlobalRootCA.cer -format ascii 
+gsk8capicmd -cert -add -db key.kdb -pw PaTaGonia2010 -label EXTGWS02-DigiCertSHA2SecureServerCA -file EXTGWS02-DigiCertSHA2SecureServerCA.cer -format ascii 
+
+queue managers to check:
+
+AMHBKS01  	SFAMHBKSITF2
+AMHGWS01	SFAMHBKSITF2
+AMHRPS01	sfamhbksitf2
+
+AMHBKS21        usny01lde023
+
+AMHBKS22	USNY01LDE019
+
+CLIGWS02        sf7mqgwsitf2
+INTGWS02	sf7mqgwsitf2
+
+INTGWS01	NJMQGWDEVL
+
+EXTGWU02	SFMQGWUAT
+
+AMHGWS11	nj7amhbksit2f2
+AMHBKS11	nj7amhbksit2f2
+
+
+QMNPX   CGI
+
+FIS
+
+IRV5300   -  Gary

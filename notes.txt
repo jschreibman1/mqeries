@@ -1,0 +1,44 @@
+
+NJMQGWDEVL
+
+0xpq2qlGB
+
+sf7mqgwsitf2
+
+
+
+
+
+non-prod     PaTaGonia2010
+
+/HA/F1/mqm/qmgrs/EXTGWS01
+
+gsk8capicmd -cert -list -db key.kdb -pw PaTaGonia2010 -type cms
+
+ ibmwebspheremqextgws01
+ 
+gsk8capicmd -cert -details -db key.kdb -pw PaTaGonia2010 -label ibmwebspheremqextgws01
+
+gsk8capicmd -cert -delete -db key.kdb -label ibmwebspheremqextgws01 -pw PaTaGonia2010
+
+
+Subject : cn=EXTGWS01.njmqgwdevl.us.mufg.jp, ou=CDSD, o =The Bank of Tokyo-Mitsubishi UFJ, Ltd., l =Jersey City, st =New Jersey, c =US
+
+
+gsk7capicmd -certreq -create -db key.kdb -label ibmwebspheremqextgws01 -dn "cn=EXTGWS01.njmqgwdevl.us.mufg.jp,o=MUFG Union Bank N.A.,ou=Q84,l=Jersey City,st=New Jersey,c=US" -size 2048 -file EXTGWS01.req -pw <Password>
+
+
+-dn "cn=EXTGWS01.njmqgwdevl.us.mufg.jp,o=MUFG Union Bank N.A.,ou=Q84,ou=MQ_Test,l=Jersey City,st=New Jersey,c=US"
+
+
+gsk8capicmd -certreq -create -db key.kdb -label ibmwebspheremqextgws01 -dn "cn=EXTGWS01.njmqgwdevl.us.mufg.jp,o=MUFG Union Bank N.A.,ou=Q84,l=Jersey City,st=New Jersey,c=US" -size 2048 -file EXTGWS01.req -pw PaTaGonia2010
+
+
+gsk8capicmd -certreq -create -db key.kdb -label ibmwebspheremqextgws01 -dn "cn=EXTGWS01.njmqgwdevl.us.mufg.jp,o=MUFG Bank\, Ltd.,ou=Q84,l=Jersey City,st=New Jersey,c=US" -size 2048 -file EXTGWS01.req -pw PaTaGonia2010
+
+
+gsk8capicmd -cert -add -db key.kdb -pw PaTaGonia2010 -label Digicert_EV_root.cer -file Digicert_EV_root.cer -format ascii  
+gsk8capicmd -cert -add -db key.kdb -pw PaTaGonia2010 -label Digicert_EV_int.cer -file Digicert_EV_int.cer -format ascii  
+
+gsk8capicmd -cert -receive -file extgws01.cer -db key.kdb -pw PaTaGonia2010 -format ascii  
+
